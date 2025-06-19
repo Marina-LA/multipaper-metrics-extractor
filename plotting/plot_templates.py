@@ -2,7 +2,7 @@ from plotting.plot_utils import plot_df
 from plotting.config import AxisConfig, CommonPlotConfig, PlotConfig
 from metrics_extractor.metrics_io import load_metrics
 
-
+# NOT USED (ORIGINAL VERSION)
 def tps_players_plot(experiment, selected_metrics, type_exp):
     """
     Plot TPS and Players over time.
@@ -133,8 +133,8 @@ def mspt_plot(experiment, selected_metrics, type_exp):
     plot_df(dfs_by_server, None, conf)  
 
 
-
-def mspt_stats_plot(experiment, selected_metrics, type_exp):
+# NOT USED (ORIGINAL VERSION)
+def mspt_stats_og_plot(experiment, selected_metrics, type_exp):
     """
     Plot MSPT statistics: Average, Median, and 95th Percentile.
     :param experiment: The name of the experiment to plot.
@@ -629,3 +629,69 @@ def latency_plot(experiment, selected_metrics, type_exp):
     min_lat = min_lat[["timestamp", "value"]]
 
     plot_df([median_lat, max_lat, min_lat], None, conf)
+
+
+def mspt_stats_plot(experiment, selected_metrics, type_exp):
+    """
+    Plot MSPT statistics: Average, Median, and 95th Percentile.
+    :param experiment: The name of the experiment to plot.
+    :param selected_metrics: List of selected metrics.
+    :param type_exp: Type of experiment ('exp_vanilla' or 'exp_mod').
+    """
+    min_mspt = load_metrics(selected_metrics[31], experiment, type_exp) # avg(mc_mspt_seconds_10_mean)
+    max_mspt = load_metrics(selected_metrics[32], experiment, type_exp) # quantile(0.95, mc_mspt_seconds_10_mean)
+    median_mspt = load_metrics(selected_metrics[28], experiment, type_exp) # quantile(0.5, mc_mspt_seconds_10_mean)
+
+    primary_axis = AxisConfig(
+        labels=["Median MSPT", "95th Percentile MSPT", "Average MSPT"],
+        ylabel="MSPT",
+        plot_kwargs=[
+            {"color": "red", "linestyle": "-"},
+            {"color": "blue", "linestyle": "-"},
+            {"color": "orange", "linestyle": "-"}
+        ]
+    )
+
+    # secondary_axis = AxisConfig(
+    #     labels=["Total Players"],
+    #     ylabel="Players",
+    #     plot_kwargs=[
+    #         {"color": "green", "linestyle": "-"}
+    #     ]
+    # )
+
+
+    common_conf = CommonPlotConfig(
+        title="MSPT (Average, Median, 95th Percentile)",
+        show_title=False,
+        show_legend=True,
+        legend_kwargs={
+            "loc": "upper center",
+            # "bbox_to_anchor": (0.5, -0.25), # legend below the plot
+            "bbox_to_anchor": (0.5, 1.2), # legend above the plot
+            "ncol": 2,
+            "fontsize": "small",
+            "frameon": False
+        },
+        tight_layout=True,
+        grid=True,
+        grid_minor=False,
+        minor_ticks=False,
+        # grid_kwargs={"linestyle": "-"},
+        # minor_grid_kwargs={"linestyle": ":"},
+        time_unit='s',
+        output_path=f"plots/{type_exp}/{experiment}/mspt_stats_{experiment}.pdf"
+    )
+
+    conf = PlotConfig(
+        common=common_conf,
+        primary_axis=primary_axis,
+        # secondary_axis=secondary_axis
+    )
+
+    #filter the data so that only timestamp and value are kept
+    min_mspt = min_mspt[["timestamp", "value"]]
+    max_mspt = max_mspt[["timestamp", "value"]]
+    median_mspt = median_mspt[["timestamp", "value"]]
+
+    plot_df([min_mspt, max_mspt, median_mspt], None, conf)
