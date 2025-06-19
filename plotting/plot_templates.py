@@ -500,3 +500,74 @@ def players_chunks_owner_plot(experiment, selected_metrics, type_exp):
     )
 
     plot_df(dfs_by_server, None, conf)
+
+
+def tps_players_stats_plot(experiment, selected_metrics, type_exp):
+    """
+    Plot TPS and Players over time.
+    :param experiment: The name of the experiment to plot.
+    :param selected_metrics: List of selected metrics.
+    :param type_exp: Type of experiment ('exp_vanilla' or 'exp_mod').
+    """
+
+    median_tps = load_metrics(selected_metrics[2], experiment, type_exp)
+    max_tps = load_metrics(selected_metrics[29], experiment, type_exp)
+    total_players = load_metrics(selected_metrics[4], experiment, type_exp)
+    min_tps = load_metrics(selected_metrics[30], experiment, type_exp)
+
+    primary_axis = AxisConfig(
+        labels=["Median TPS", "Max TPS", "Min TPS"],
+        ylabel="TPS",
+        ylim=(0, 20),
+        plot_kwargs=[
+            {"color": "red", "linestyle": "-"},
+            {"color": "blue", "linestyle": "-"},
+            {"color": "orange", "linestyle": "-"}
+        ]
+    )
+
+    secondary_axis = AxisConfig(
+        labels=["Total Players"],
+        ylabel="Players",
+        ylim=(0, None),
+        plot_kwargs=[
+            {"color": "green", "linestyle": "-"}
+        ]
+    )
+
+
+    common_conf = CommonPlotConfig(
+        title="TPS and Players",
+        show_title=False,
+        show_legend=True,
+        legend_kwargs={
+            "loc": "upper center",
+            # "bbox_to_anchor": (0.5, -0.25), # legend below the plot
+            "bbox_to_anchor": (0.5, 1.2), # legend above the plot
+            "ncol": 2,
+            "fontsize": "small",
+            "frameon": False
+        },
+        tight_layout=False,
+        grid=True,
+        grid_minor=False,
+        minor_ticks=False,
+        # grid_kwargs={"linestyle": "-"},
+        # minor_grid_kwargs={"linestyle": ":"},
+        time_unit='s',
+        output_path=f"plots/{type_exp}/{experiment}/tps_players_stats_{experiment}.pdf"
+    )
+
+    conf = PlotConfig(
+        common=common_conf,
+        primary_axis=primary_axis,
+        secondary_axis=secondary_axis
+    )
+
+    #filter the data so that only timestamp and value are kept
+    median_tps = median_tps[["timestamp", "value"]]
+    max_tps = max_tps[["timestamp", "value"]]
+    total_players = total_players[["timestamp", "value"]]
+    min_tps = min_tps[["timestamp", "value"]]
+
+    plot_df([median_tps, max_tps, min_tps], [total_players], conf)

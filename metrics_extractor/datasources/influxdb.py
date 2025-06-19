@@ -55,6 +55,7 @@ class InfluxDBSource(DataSource):
                 url=self.url,
                 token=self.token,
                 org=self.org,
+                timeout=None
             )
             # Test connection by querying health
             health = self.client.health()
