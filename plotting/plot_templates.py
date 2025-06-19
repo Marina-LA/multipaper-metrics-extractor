@@ -571,3 +571,61 @@ def tps_players_stats_plot(experiment, selected_metrics, type_exp):
     min_tps = min_tps[["timestamp", "value"]]
 
     plot_df([median_tps, max_tps, min_tps], [total_players], conf)
+
+
+
+def latency_plot(experiment, selected_metrics, type_exp):
+    """
+    Plot Server Latency.
+    :param experiment: The name of the experiment to plot.
+    :param selected_metrics: List of selected metrics.
+    :param type_exp: Type of experiment ('exp_vanilla' or 'exp_mod').
+    """
+
+    median_lat = load_metrics(selected_metrics[23], experiment, type_exp)
+    max_lat = load_metrics(selected_metrics[21], experiment, type_exp)
+    min_lat = load_metrics(selected_metrics[22], experiment, type_exp)
+
+    primary_axis = AxisConfig(
+        labels=["Median Latency", "Max Latency", "Min Latency"],
+        ylabel="Latency (s)",
+        plot_kwargs=[
+            {"color": "red", "linestyle": "-"},
+            {"color": "blue", "linestyle": "-"},
+            {"color": "orange", "linestyle": "-"}
+        ]
+    )
+
+    common_conf = CommonPlotConfig(
+        title="Server Latency",
+        show_title=False,
+        show_legend=True,
+        legend_kwargs={
+            "loc": "upper center",
+            # "bbox_to_anchor": (0.5, -0.25), # legend below the plot
+            "bbox_to_anchor": (0.5, 1.2), # legend above the plot
+            "ncol": 2,
+            "fontsize": "small",
+            "frameon": False
+        },
+        tight_layout=False,
+        grid=True,
+        grid_minor=False,
+        minor_ticks=False,
+        # grid_kwargs={"linestyle": "-"},
+        # minor_grid_kwargs={"linestyle": ":"},
+        time_unit='s',
+        output_path=f"plots/{type_exp}/{experiment}/tps_players_stats_{experiment}.pdf"
+    )
+
+    conf = PlotConfig(
+        common=common_conf,
+        primary_axis=primary_axis,
+    )
+
+    #filter the data so that only timestamp and value are kept
+    median_lat = median_lat[["timestamp", "value"]]
+    max_lat = max_lat[["timestamp", "value"]]
+    min_lat = min_lat[["timestamp", "value"]]
+
+    plot_df([median_lat, max_lat, min_lat], None, conf)

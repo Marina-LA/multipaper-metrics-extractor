@@ -66,7 +66,7 @@ def plot_df(
     ax1.set_ylabel(primary_axis.ylabel)
     if primary_axis.ylim:
         ax1.set_ylim(primary_axis.ylim)
-    ax1.yaxis.set_major_formatter(FuncFormatter(integer_formatter))  # Ensure x-axis ticks are integers
+    # ax1.yaxis.set_major_formatter(FuncFormatter(integer_formatter))  # Ensure x-axis ticks are integers
     if common.xlim:
         ax1.set_xlim(common.xlim)
         if secondary_axis and secondary_dfs:
