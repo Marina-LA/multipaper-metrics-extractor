@@ -16,7 +16,7 @@ def setup_plot_style():
             "text.usetex": True,
             "font.family": "serif",
             "pgf.texsystem": "pdflatex",
-            "font.size": 12,  # footnote/caption size 9pt for paper
+            "font.size": 9,  # footnote/caption size 9pt for paper
             # "font.size": 10,     # caption size 10pt on thesis
             "pgf.preamble": "\n".join(
                 [
@@ -24,7 +24,7 @@ def setup_plot_style():
                     # r"\usepackage{lmodern}",
                 ]
             ),
-            # "lines.linewidth": 0.8,
+            "lines.linewidth": 0.5,
             "lines.markersize": 3,
             "axes.linewidth": 0.5,
             "grid.linewidth": 0.3,

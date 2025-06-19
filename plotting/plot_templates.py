@@ -39,10 +39,17 @@ def tps_players_plot(experiment, selected_metrics, type_exp):
 
     common_conf = CommonPlotConfig(
         title="TPS and Players",
-        figsize=(15, 6),
+        show_title=False,
         show_legend=True,
-        legend_kwargs={"loc": "upper left"},
-        tight_layout=True,
+        legend_kwargs={
+            "loc": "upper center",
+            # "bbox_to_anchor": (0.5, -0.25), # legend below the plot
+            "bbox_to_anchor": (0.5, 1.2), # legend above the plot
+            "ncol": 2,
+            "fontsize": "small",
+            "frameon": False
+        },
+        tight_layout=False,
         grid=True,
         grid_minor=False,
         minor_ticks=False,
@@ -98,9 +105,16 @@ def mspt_plot(experiment, selected_metrics, type_exp):
 
     common_conf = CommonPlotConfig(
         title="MSPT per Server",
-        figsize=(15, 6),
-        show_legend=True,
-        legend_kwargs={"loc": "upper left"},
+        show_title=False,
+        show_legend=False,
+        legend_kwargs={
+            "loc": "upper center",
+            # "bbox_to_anchor": (0.5, -0.25), # legend below the plot
+            "bbox_to_anchor": (0.5, 1.2), # legend above the plot
+            "ncol": 2,
+            "fontsize": "small",
+            "frameon": False
+        },
         tight_layout=True,
         grid=True,
         grid_minor=False,
@@ -153,9 +167,16 @@ def mspt_stats_plot(experiment, selected_metrics, type_exp):
 
     common_conf = CommonPlotConfig(
         title="MSPT (Average, Median, 95th Percentile)",
-        figsize=(15, 6),
+        show_title=False,
         show_legend=True,
-        legend_kwargs={"loc": "upper left"},
+        legend_kwargs={
+            "loc": "upper center",
+            # "bbox_to_anchor": (0.5, -0.25), # legend below the plot
+            "bbox_to_anchor": (0.5, 1.2), # legend above the plot
+            "ncol": 2,
+            "fontsize": "small",
+            "frameon": False
+        },
         tight_layout=True,
         grid=True,
         grid_minor=False,
@@ -228,10 +249,17 @@ def player_tps_server_plot(experiment, selected_metrics, type_exp):
 
     common_conf = CommonPlotConfig(
         title="Active Players and TPS per Server",
-        figsize=(15, 6),
-        show_legend=True,
-        legend_kwargs={"loc": "upper left"},
-        tight_layout=True,
+        show_title=False,
+        show_legend=False,
+        legend_kwargs={
+            "loc": "upper center",
+            # "bbox_to_anchor": (0.5, -0.25), # legend below the plot
+            "bbox_to_anchor": (0.5, 1.2), # legend above the plot
+            "ncol": 2,
+            "fontsize": "small",
+            "frameon": False
+        },
+        tight_layout=False,
         grid=True,
         grid_minor=False,
         minor_ticks=False,
@@ -280,9 +308,16 @@ def players_servers_plot(experiment, selected_metrics, type_exp):
 
     common_conf = CommonPlotConfig(
         title="Active Players per Server",
-        figsize=(15, 6),
-        show_legend=True,
-        legend_kwargs={"loc": "upper left"},
+        show_title=False,
+        show_legend=False,
+        legend_kwargs={
+            "loc": "upper center",
+            # "bbox_to_anchor": (0.5, -0.25), # legend below the plot
+            "bbox_to_anchor": (0.5, 1.2), # legend above the plot
+            "ncol": 2,
+            "fontsize": "small",
+            "frameon": False
+        },
         tight_layout=True,
         grid=True,
         grid_minor=False,
@@ -331,9 +366,16 @@ def tps_servers_plot(experiment, selected_metrics, type_exp):
 
     common_conf = CommonPlotConfig(
         title="TPS per Server",
-        figsize=(15, 6),
-        show_legend=True,
-        legend_kwargs={"loc": "upper left"},
+        show_title=False,
+        show_legend=False,
+        legend_kwargs={
+            "loc": "upper center",
+            # "bbox_to_anchor": (0.5, -0.25), # legend below the plot
+            "bbox_to_anchor": (0.5, 1.2), # legend above the plot
+            "ncol": 2,
+            "fontsize": "small",
+            "frameon": False
+        },
         tight_layout=True,
         grid=True,
         grid_minor=False,
@@ -380,9 +422,16 @@ def chunk_ownership_plot(experiment, selected_metrics, type_exp):
 
     common_conf = CommonPlotConfig(
         title="Chunk Ownership by Server",
-        figsize=(15, 6),
-        show_legend=True,
-        legend_kwargs={"loc": "best"},
+        show_title=False,
+        show_legend=False,
+        legend_kwargs={
+            "loc": "upper center",
+            # "bbox_to_anchor": (0.5, -0.25), # legend below the plot
+            "bbox_to_anchor": (0.5, 1.2), # legend above the plot
+            "ncol": 2,
+            "fontsize": "small",
+            "frameon": False
+        },
         tight_layout=True,
         grid=True,
         grid_minor=False,
@@ -427,9 +476,16 @@ def players_chunks_owner_plot(experiment, selected_metrics, type_exp):
 
     common_conf = CommonPlotConfig(
         title="Nº Players in Chunks owned by Server",
-        figsize=(15, 6),
-        show_legend=True,
-        legend_kwargs={"loc": "best"},
+        show_title=False,
+        show_legend=False,
+        legend_kwargs={
+            "loc": "upper center",
+            # "bbox_to_anchor": (0.5, -0.25), # legend below the plot
+            "bbox_to_anchor": (0.5, 1.2), # legend above the plot
+            "ncol": 2,
+            "fontsize": "small",
+            "frameon": False
+        },
         tight_layout=True,
         grid=True,
         grid_minor=False,

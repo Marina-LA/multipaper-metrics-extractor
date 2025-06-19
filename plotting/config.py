@@ -12,9 +12,10 @@ class AxisConfig:
 
 @dataclass
 class CommonPlotConfig:
-    title: str
+    title: Optional[str] = None
+    show_title: bool = True
     xlim: tuple[float, float] = None
-    figsize: tuple[int, int] = (10, 6)
+    figsize: tuple[int, int] = (3.33, 2.2)
     show_legend: bool = True
     legend_kwargs: dict = field(default_factory=dict)
     tight_layout: bool = True

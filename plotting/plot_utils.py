@@ -4,6 +4,11 @@ import matplotlib.pyplot as plt
 import os
 from typing import Optional, List
 from plotting.config import PlotConfig, AxisConfig, CommonPlotConfig
+from matplotlib.ticker import MaxNLocator, FuncFormatter
+
+def integer_formatter(x, pos):
+    #x: float, pos: int
+    return f"{int(round(x))}"
 
 def plot_df(
     primary_dfs: List[pd.DataFrame],
@@ -53,19 +58,23 @@ def plot_df(
         ax2.set_ylabel(secondary_axis.ylabel)
         if secondary_axis.ylim:
             ax2.set_ylim(secondary_axis.ylim)
+        ax2.yaxis.set_major_formatter(FuncFormatter(integer_formatter))   # Ensure y-axis ticks are integers
+
         
     # Set axis labels and limits
     ax1.set_xlabel(f"Time ({time_unit})")
     ax1.set_ylabel(primary_axis.ylabel)
     if primary_axis.ylim:
         ax1.set_ylim(primary_axis.ylim)
+    ax1.yaxis.set_major_formatter(FuncFormatter(integer_formatter))  # Ensure x-axis ticks are integers
     if common.xlim:
         ax1.set_xlim(common.xlim)
         if secondary_axis and secondary_dfs:
             ax2.set_xlim(common.xlim)
 
     # Plot title and legends
-    plt.title(title)
+    if common.show_title:
+        plt.title(title)
     if show_legend:
         lines_primary, labels_primary = ax1.get_legend_handles_labels()
         if secondary_axis and secondary_dfs:
