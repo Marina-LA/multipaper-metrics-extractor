@@ -105,6 +105,6 @@ def plot_df(
     if common.output_path:
         output_dir = os.path.dirname(common.output_path)
         os.makedirs(output_dir, exist_ok=True)
-        plt.savefig(common.output_path, format='pdf', bbox_inches='tight')
+        plt.savefig(common.output_path, format='pdf', bbox_inches='tight', dpi=500)
 
     plt.show()
