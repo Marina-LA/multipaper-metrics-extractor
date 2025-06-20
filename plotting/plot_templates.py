@@ -516,7 +516,7 @@ def tps_players_stats_plot(experiment, selected_metrics, type_exp):
     min_tps = load_metrics(selected_metrics[30], experiment, type_exp)
 
     primary_axis = AxisConfig(
-        labels=["Median TPS", "Max TPS", "Min TPS"],
+        labels=["Min TPS", "Max TPS", "Median TPS"],
         ylabel="TPS",
         ylim=(0, 20),
         plot_kwargs=[
@@ -570,7 +570,7 @@ def tps_players_stats_plot(experiment, selected_metrics, type_exp):
     total_players = total_players[["timestamp", "value"]]
     min_tps = min_tps[["timestamp", "value"]]
 
-    plot_df([median_tps, max_tps, min_tps], [total_players], conf)
+    plot_df([min_tps, max_tps, median_tps], [total_players], conf)
 
 
 
@@ -587,7 +587,7 @@ def latency_plot(experiment, selected_metrics, type_exp):
     min_lat = load_metrics(selected_metrics[22], experiment, type_exp)
 
     primary_axis = AxisConfig(
-        labels=["Median Latency", "Max Latency", "Min Latency"],
+        labels=["Min Latency", "Max Latency", "Median Latency"],
         ylabel="Latency (s)",
         plot_kwargs=[
             {"color": "red", "linestyle": "-"},
@@ -628,7 +628,7 @@ def latency_plot(experiment, selected_metrics, type_exp):
     max_lat = max_lat[["timestamp", "value"]]
     min_lat = min_lat[["timestamp", "value"]]
 
-    plot_df([median_lat, max_lat, min_lat], None, conf)
+    plot_df([min_lat, max_lat, median_lat], None, conf)
 
 
 def mspt_stats_plot(experiment, selected_metrics, type_exp):
@@ -643,7 +643,7 @@ def mspt_stats_plot(experiment, selected_metrics, type_exp):
     median_mspt = load_metrics(selected_metrics[28], experiment, type_exp) # quantile(0.5, mc_mspt_seconds_10_mean)
 
     primary_axis = AxisConfig(
-        labels=["Median MSPT", "95th Percentile MSPT", "Average MSPT"],
+        labels=["Min MSPT", "Max MSPT", "Median MSPT"],
         ylabel="MSPT",
         plot_kwargs=[
             {"color": "red", "linestyle": "-"},
@@ -662,7 +662,7 @@ def mspt_stats_plot(experiment, selected_metrics, type_exp):
 
 
     common_conf = CommonPlotConfig(
-        title="MSPT (Average, Median, 95th Percentile)",
+        title="MSPT",
         show_title=False,
         show_legend=True,
         legend_kwargs={
