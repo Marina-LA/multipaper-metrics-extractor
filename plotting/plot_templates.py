@@ -184,7 +184,7 @@ def mspt_stats_og_plot(experiment, selected_metrics, type_exp):
         # grid_kwargs={"linestyle": "-"},
         # minor_grid_kwargs={"linestyle": ":"},
         time_unit='s',
-        output_path=f"plots/{type_exp}/{experiment}/mspt_stats_{experiment}.pdf"
+        output_path=f"plots/{type_exp}/{experiment}/mspt_stats_og_{experiment}.pdf"
     )
 
     conf = PlotConfig(
@@ -615,7 +615,7 @@ def latency_plot(experiment, selected_metrics, type_exp):
         # grid_kwargs={"linestyle": "-"},
         # minor_grid_kwargs={"linestyle": ":"},
         time_unit='s',
-        output_path=f"plots/{type_exp}/{experiment}/tps_players_stats_{experiment}.pdf"
+        output_path=f"plots/{type_exp}/{experiment}/latency_{experiment}.pdf"
     )
 
     conf = PlotConfig(
