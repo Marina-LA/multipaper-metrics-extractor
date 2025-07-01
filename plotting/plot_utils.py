@@ -24,7 +24,7 @@ def plot_df(
     show_legend = common.show_legend
     grid = common.grid
     grid_minor = common.grid_minor
-    tight_layout = common.tight_layout
+    # tight_layout = common.tight_layout
 
     # Calculate the minimum timestamp for alignment
     min_time = min(
@@ -97,14 +97,17 @@ def plot_df(
         # Align the secondary y-axis with the primary y-axis
         ax2.set_yticks(np.linspace(ax2.get_yticks()[0], ax2.get_yticks()[-1], len(ax1.get_yticks())))
     
-    if tight_layout:
-        plt.tight_layout()
-    if common.subplots_adjust:
-        plt.subplots_adjust(**common.subplots_adjust)
+    # if tight_layout:
+    #     plt.tight_layout()
+    # if common.subplots_adjust:
+    #     plt.subplots_adjust(**common.subplots_adjust)
+
+    fig.tight_layout()
+    plt.subplots_adjust(top=0.85)
 
     if common.output_path:
         output_dir = os.path.dirname(common.output_path)
         os.makedirs(output_dir, exist_ok=True)
-        plt.savefig(common.output_path, format='pdf', bbox_inches='tight', dpi=500)
+        plt.savefig(common.output_path, format='pdf', dpi=500)
 
     plt.show()

@@ -36,25 +36,20 @@ def tps_players_plot(experiment, selected_metrics, type_exp):
         ]
     )
 
-
     common_conf = CommonPlotConfig(
         title="TPS and Players",
         show_title=False,
         show_legend=True,
         legend_kwargs={
             "loc": "upper center",
-            # "bbox_to_anchor": (0.5, -0.25), # legend below the plot
-            "bbox_to_anchor": (0.5, 1.2), # legend above the plot
+            "bbox_to_anchor": (0.5, 1.25),
             "ncol": 2,
             "fontsize": "small",
             "frameon": False
         },
-        tight_layout=False,
         grid=True,
         grid_minor=False,
         minor_ticks=False,
-        # grid_kwargs={"linestyle": "-"},
-        # minor_grid_kwargs={"linestyle": ":"},
         time_unit='s',
         output_path=f"plots/{type_exp}/{experiment}/tps_players_{experiment}.pdf"
     )
@@ -109,18 +104,14 @@ def mspt_plot(experiment, selected_metrics, type_exp):
         show_legend=False,
         legend_kwargs={
             "loc": "upper center",
-            # "bbox_to_anchor": (0.5, -0.25), # legend below the plot
-            "bbox_to_anchor": (0.5, 1.2), # legend above the plot
+            "bbox_to_anchor": (0.5, 1.25),
             "ncol": 2,
             "fontsize": "small",
             "frameon": False
         },
-        tight_layout=True,
         grid=True,
         grid_minor=False,
         minor_ticks=False,
-        # grid_kwargs={"linestyle": "-"},
-        # minor_grid_kwargs={"linestyle": ":"},
         time_unit='s',
         output_path=f"plots/{type_exp}/{experiment}/mspt_{experiment}.pdf"
     )
@@ -156,33 +147,20 @@ def mspt_stats_og_plot(experiment, selected_metrics, type_exp):
         ]
     )
 
-    # secondary_axis = AxisConfig(
-    #     labels=["Total Players"],
-    #     ylabel="Players",
-    #     plot_kwargs=[
-    #         {"color": "green", "linestyle": "-"}
-    #     ]
-    # )
-
-
     common_conf = CommonPlotConfig(
         title="MSPT (Average, Median, 95th Percentile)",
         show_title=False,
         show_legend=True,
         legend_kwargs={
             "loc": "upper center",
-            # "bbox_to_anchor": (0.5, -0.25), # legend below the plot
-            "bbox_to_anchor": (0.5, 1.2), # legend above the plot
+            "bbox_to_anchor": (0.5, 1.25),
             "ncol": 2,
             "fontsize": "small",
             "frameon": False
         },
-        tight_layout=True,
         grid=True,
         grid_minor=False,
         minor_ticks=False,
-        # grid_kwargs={"linestyle": "-"},
-        # minor_grid_kwargs={"linestyle": ":"},
         time_unit='s',
         output_path=f"plots/{type_exp}/{experiment}/mspt_stats_og_{experiment}.pdf"
     )
@@ -253,18 +231,14 @@ def player_tps_server_plot(experiment, selected_metrics, type_exp):
         show_legend=False,
         legend_kwargs={
             "loc": "upper center",
-            # "bbox_to_anchor": (0.5, -0.25), # legend below the plot
-            "bbox_to_anchor": (0.5, 1.2), # legend above the plot
+            "bbox_to_anchor": (0.5, 1.25),
             "ncol": 2,
             "fontsize": "small",
             "frameon": False
         },
-        tight_layout=False,
         grid=True,
         grid_minor=False,
         minor_ticks=False,
-        # grid_kwargs={"linestyle": "-"},
-        # minor_grid_kwargs={"linestyle": ":"},
         time_unit='s',
         output_path=f"plots/{type_exp}/{experiment}/player_tps_server_{experiment}.pdf"
     )
@@ -312,18 +286,14 @@ def players_servers_plot(experiment, selected_metrics, type_exp):
         show_legend=False,
         legend_kwargs={
             "loc": "upper center",
-            # "bbox_to_anchor": (0.5, -0.25), # legend below the plot
-            "bbox_to_anchor": (0.5, 1.2), # legend above the plot
+            "bbox_to_anchor": (0.5, 1.25),
             "ncol": 2,
             "fontsize": "small",
             "frameon": False
         },
-        tight_layout=True,
         grid=True,
         grid_minor=False,
         minor_ticks=False,
-        # grid_kwargs={"linestyle": "-"},
-        # minor_grid_kwargs={"linestyle": ":"},
         time_unit='s',
         output_path=f"plots/{type_exp}/{experiment}/players_server_{experiment}.pdf"
     )
@@ -370,18 +340,14 @@ def tps_servers_plot(experiment, selected_metrics, type_exp):
         show_legend=False,
         legend_kwargs={
             "loc": "upper center",
-            # "bbox_to_anchor": (0.5, -0.25), # legend below the plot
-            "bbox_to_anchor": (0.5, 1.2), # legend above the plot
+            "bbox_to_anchor": (0.5, 1.25),
             "ncol": 2,
             "fontsize": "small",
             "frameon": False
         },
-        tight_layout=True,
         grid=True,
         grid_minor=False,
         minor_ticks=False,
-        # grid_kwargs={"linestyle": "-"},
-        # minor_grid_kwargs={"linestyle": ":"},
         time_unit='s',
         output_path=f"plots/{type_exp}/{experiment}/tps_server_{experiment}.pdf"
     )
@@ -426,13 +392,11 @@ def chunk_ownership_plot(experiment, selected_metrics, type_exp):
         show_legend=False,
         legend_kwargs={
             "loc": "upper center",
-            # "bbox_to_anchor": (0.5, -0.25), # legend below the plot
-            "bbox_to_anchor": (0.5, 1.2), # legend above the plot
+            "bbox_to_anchor": (0.5, 1.25),
             "ncol": 2,
             "fontsize": "small",
             "frameon": False
         },
-        tight_layout=True,
         grid=True,
         grid_minor=False,
         minor_ticks=False,
@@ -480,13 +444,11 @@ def players_chunks_owner_plot(experiment, selected_metrics, type_exp):
         show_legend=False,
         legend_kwargs={
             "loc": "upper center",
-            # "bbox_to_anchor": (0.5, -0.25), # legend below the plot
-            "bbox_to_anchor": (0.5, 1.2), # legend above the plot
+            "bbox_to_anchor": (0.5, 1.25),
             "ncol": 2,
             "fontsize": "small",
             "frameon": False
         },
-        tight_layout=True,
         grid=True,
         grid_minor=False,
         minor_ticks=False,
@@ -535,25 +497,20 @@ def tps_players_stats_plot(experiment, selected_metrics, type_exp):
         ]
     )
 
-
     common_conf = CommonPlotConfig(
         title="TPS and Players",
         show_title=False,
         show_legend=True,
         legend_kwargs={
             "loc": "upper center",
-            # "bbox_to_anchor": (0.5, -0.25), # legend below the plot
-            "bbox_to_anchor": (0.5, 1.2), # legend above the plot
+            "bbox_to_anchor": (0.5, 1.25),
             "ncol": 2,
             "fontsize": "small",
             "frameon": False
         },
-        tight_layout=False,
         grid=True,
         grid_minor=False,
         minor_ticks=False,
-        # grid_kwargs={"linestyle": "-"},
-        # minor_grid_kwargs={"linestyle": ":"},
         time_unit='s',
         output_path=f"plots/{type_exp}/{experiment}/tps_players_stats_{experiment}.pdf"
     )
@@ -602,18 +559,14 @@ def latency_plot(experiment, selected_metrics, type_exp):
         show_legend=True,
         legend_kwargs={
             "loc": "upper center",
-            # "bbox_to_anchor": (0.5, -0.25), # legend below the plot
-            "bbox_to_anchor": (0.5, 1.2), # legend above the plot
+            "bbox_to_anchor": (0.5, 1.25),
             "ncol": 2,
             "fontsize": "small",
             "frameon": False
         },
-        tight_layout=False,
         grid=True,
         grid_minor=False,
         minor_ticks=False,
-        # grid_kwargs={"linestyle": "-"},
-        # minor_grid_kwargs={"linestyle": ":"},
         time_unit='s',
         output_path=f"plots/{type_exp}/{experiment}/latency_{experiment}.pdf"
     )
@@ -652,33 +605,20 @@ def mspt_stats_plot(experiment, selected_metrics, type_exp):
         ]
     )
 
-    # secondary_axis = AxisConfig(
-    #     labels=["Total Players"],
-    #     ylabel="Players",
-    #     plot_kwargs=[
-    #         {"color": "green", "linestyle": "-"}
-    #     ]
-    # )
-
-
     common_conf = CommonPlotConfig(
         title="MSPT",
         show_title=False,
         show_legend=True,
         legend_kwargs={
             "loc": "upper center",
-            # "bbox_to_anchor": (0.5, -0.25), # legend below the plot
-            "bbox_to_anchor": (0.5, 1.2), # legend above the plot
+            "bbox_to_anchor": (0.5, 1.25),
             "ncol": 2,
             "fontsize": "small",
             "frameon": False
         },
-        tight_layout=True,
         grid=True,
         grid_minor=False,
         minor_ticks=False,
-        # grid_kwargs={"linestyle": "-"},
-        # minor_grid_kwargs={"linestyle": ":"},
         time_unit='s',
         output_path=f"plots/{type_exp}/{experiment}/mspt_stats_{experiment}.pdf"
     )
