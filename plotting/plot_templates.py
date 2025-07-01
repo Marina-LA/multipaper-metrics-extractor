@@ -42,8 +42,9 @@ def tps_players_plot(experiment, selected_metrics, type_exp):
         show_legend=True,
         legend_kwargs={
             "loc": "upper center",
-            "bbox_to_anchor": (0.5, 1.25),
-            "ncol": 2,
+            "bbox_to_anchor": (0.5, 1.18),
+            "ncol": 4,
+            "borderaxespad": 0,
             "fontsize": "small",
             "frameon": False
         },
@@ -104,8 +105,9 @@ def mspt_plot(experiment, selected_metrics, type_exp):
         show_legend=False,
         legend_kwargs={
             "loc": "upper center",
-            "bbox_to_anchor": (0.5, 1.25),
-            "ncol": 2,
+            "bbox_to_anchor": (0.5, 1.18),
+            "ncol": 4,
+            "borderaxespad": 0,
             "fontsize": "small",
             "frameon": False
         },
@@ -153,8 +155,9 @@ def mspt_stats_og_plot(experiment, selected_metrics, type_exp):
         show_legend=True,
         legend_kwargs={
             "loc": "upper center",
-            "bbox_to_anchor": (0.5, 1.25),
-            "ncol": 2,
+            "bbox_to_anchor": (0.5, 1.18),
+            "ncol": 4,
+            "borderaxespad": 0,
             "fontsize": "small",
             "frameon": False
         },
@@ -231,8 +234,9 @@ def player_tps_server_plot(experiment, selected_metrics, type_exp):
         show_legend=False,
         legend_kwargs={
             "loc": "upper center",
-            "bbox_to_anchor": (0.5, 1.25),
-            "ncol": 2,
+            "bbox_to_anchor": (0.5, 1.18),
+            "ncol": 4,
+            "borderaxespad": 0,
             "fontsize": "small",
             "frameon": False
         },
@@ -286,8 +290,9 @@ def players_servers_plot(experiment, selected_metrics, type_exp):
         show_legend=False,
         legend_kwargs={
             "loc": "upper center",
-            "bbox_to_anchor": (0.5, 1.25),
-            "ncol": 2,
+            "bbox_to_anchor": (0.5, 1.18),
+            "ncol": 4,
+            "borderaxespad": 0,
             "fontsize": "small",
             "frameon": False
         },
@@ -340,8 +345,9 @@ def tps_servers_plot(experiment, selected_metrics, type_exp):
         show_legend=False,
         legend_kwargs={
             "loc": "upper center",
-            "bbox_to_anchor": (0.5, 1.25),
-            "ncol": 2,
+            "bbox_to_anchor": (0.5, 1.18),
+            "ncol": 4,
+            "borderaxespad": 0,
             "fontsize": "small",
             "frameon": False
         },
@@ -392,8 +398,9 @@ def chunk_ownership_plot(experiment, selected_metrics, type_exp):
         show_legend=False,
         legend_kwargs={
             "loc": "upper center",
-            "bbox_to_anchor": (0.5, 1.25),
-            "ncol": 2,
+            "bbox_to_anchor": (0.5, 1.18),
+            "ncol": 4,
+            "borderaxespad": 0,
             "fontsize": "small",
             "frameon": False
         },
@@ -444,8 +451,9 @@ def players_chunks_owner_plot(experiment, selected_metrics, type_exp):
         show_legend=False,
         legend_kwargs={
             "loc": "upper center",
-            "bbox_to_anchor": (0.5, 1.25),
-            "ncol": 2,
+            "bbox_to_anchor": (0.5, 1.18),
+            "ncol": 4,
+            "borderaxespad": 0,
             "fontsize": "small",
             "frameon": False
         },
@@ -503,8 +511,9 @@ def tps_players_stats_plot(experiment, selected_metrics, type_exp):
         show_legend=True,
         legend_kwargs={
             "loc": "upper center",
-            "bbox_to_anchor": (0.5, 1.25),
-            "ncol": 2,
+            "bbox_to_anchor": (0.5, 1.13),
+            "ncol": 4,
+            "borderaxespad": 0,
             "fontsize": "small",
             "frameon": False
         },
@@ -559,8 +568,9 @@ def latency_plot(experiment, selected_metrics, type_exp):
         show_legend=True,
         legend_kwargs={
             "loc": "upper center",
-            "bbox_to_anchor": (0.5, 1.25),
-            "ncol": 2,
+            "bbox_to_anchor": (0.5, 1.13),
+            "ncol": 3,
+            "borderaxespad": 0,
             "fontsize": "small",
             "frameon": False
         },
@@ -611,8 +621,9 @@ def mspt_stats_plot(experiment, selected_metrics, type_exp):
         show_legend=True,
         legend_kwargs={
             "loc": "upper center",
-            "bbox_to_anchor": (0.5, 1.25),
-            "ncol": 2,
+            "bbox_to_anchor": (0.5, 1.13),
+            "ncol": 3,
+            "borderaxespad": 0,
             "fontsize": "small",
             "frameon": False
         },

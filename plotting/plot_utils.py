@@ -103,7 +103,7 @@ def plot_df(
     #     plt.subplots_adjust(**common.subplots_adjust)
 
     fig.tight_layout()
-    plt.subplots_adjust(top=0.85)
+    plt.subplots_adjust(top=0.90, bottom=0.175)
 
     if common.output_path:
         output_dir = os.path.dirname(common.output_path)

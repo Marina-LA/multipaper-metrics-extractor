@@ -15,7 +15,7 @@ class CommonPlotConfig:
     title: Optional[str] = None
     show_title: bool = True
     xlim: tuple[float, float] = None
-    figsize: tuple[int, int] = (3.33, 1.8)
+    figsize: tuple[int, int] = (3.33, 1.7)
     show_legend: bool = True
     legend_kwargs: dict = field(default_factory=dict)
     # tight_layout: bool = True
