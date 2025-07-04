@@ -720,6 +720,7 @@ def mspt_tps_equivalence_plot(experiment, selected_metrics, type_exp):
     min_mspt = load_metrics(selected_metrics[31], experiment, type_exp) # avg(mc_mspt_seconds_10_mean)
     max_mspt = load_metrics(selected_metrics[32], experiment, type_exp) # quantile(0.95, mc_mspt_seconds_10_mean)
     median_mspt = load_metrics(selected_metrics[28], experiment, type_exp) # quantile(0.5, mc_mspt_seconds_10_mean)
+    total_players = load_metrics(selected_metrics[4], experiment, type_exp)
 
     # Define horizontal lines for MSPT equivalence to TPS (50ms -> 20 TPS, 59ms -> 17 TPS)
 
@@ -737,8 +738,18 @@ def mspt_tps_equivalence_plot(experiment, selected_metrics, type_exp):
         ]
     )
 
+
+    secondary_axis = AxisConfig(
+        labels=["Total Players"],
+        ylabel="Players",
+        ylim=(0, None),
+        plot_kwargs=[
+            {"color": "green", "linestyle": "-"}
+        ]
+    )
+
     common_conf = CommonPlotConfig(
-        title="MSPT",   
+        title="MSPT and Players",
         show_title=False,
         show_legend=True,
         legend_kwargs={
@@ -749,9 +760,9 @@ def mspt_tps_equivalence_plot(experiment, selected_metrics, type_exp):
             "fontsize": "small",
             "frameon": False
         },
-        legend_order = [0, 4, 1, 3, 2], # Ensure the horizontal lines are last in the legend
+        legend_order = [0, 4, 1, 3, 2, 5], # Ensure the horizontal lines are last in the legend
         subplots_adjust={
-            "top": 0.85,
+            "top": 0.90,
             "bottom": 0.175
         },
         tight_layout=True,
@@ -765,7 +776,7 @@ def mspt_tps_equivalence_plot(experiment, selected_metrics, type_exp):
     conf = PlotConfig(
         common=common_conf,
         primary_axis=primary_axis,
-        # secondary_axis=secondary_axis
+        secondary_axis=secondary_axis
     )
 
     #filter the data so that only timestamp and value are kept
@@ -773,4 +784,4 @@ def mspt_tps_equivalence_plot(experiment, selected_metrics, type_exp):
     max_mspt = max_mspt[["timestamp", "value"]]
     median_mspt = median_mspt[["timestamp", "value"]]
 
-    plot_df([min_mspt, max_mspt, median_mspt], None, conf)
+    plot_df([min_mspt, max_mspt, median_mspt], [total_players], conf)
