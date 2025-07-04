@@ -727,6 +727,7 @@ def mspt_tps_equivalence_plot(experiment, selected_metrics, type_exp):
     primary_axis = AxisConfig(
         labels=["Min MSPT", "Max MSPT", "Median MSPT"],
         ylabel="MSPT",
+        ylim=(0, 200),
         plot_kwargs=[
             {"color": "red", "linestyle": "-"},
             {"color": "blue", "linestyle": "-"},
@@ -742,7 +743,7 @@ def mspt_tps_equivalence_plot(experiment, selected_metrics, type_exp):
     secondary_axis = AxisConfig(
         labels=["Total Players"],
         ylabel="Players",
-        ylim=(0, None),
+        ylim=(0, 1000),
         plot_kwargs=[
             {"color": "green", "linestyle": "-"}
         ]
@@ -754,7 +755,7 @@ def mspt_tps_equivalence_plot(experiment, selected_metrics, type_exp):
         show_legend=True,
         legend_kwargs={
             "loc": "upper center",
-            "bbox_to_anchor": (0.5, 1.175),
+            "bbox_to_anchor": (0.5, 1.23),
             "ncol": 3,
             "borderaxespad": 0,
             "fontsize": "small",
@@ -762,7 +763,7 @@ def mspt_tps_equivalence_plot(experiment, selected_metrics, type_exp):
         },
         legend_order = [0, 4, 1, 3, 2, 5], # Ensure the horizontal lines are last in the legend
         subplots_adjust={
-            "top": 0.90,
+            "top": 0.84,
             "bottom": 0.175
         },
         tight_layout=True,
