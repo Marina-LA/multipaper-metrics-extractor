@@ -1,6 +1,12 @@
 from plotting.plot_utils import plot_df
 from plotting.config import AxisConfig, CommonPlotConfig, PlotConfig
 from metrics_extractor.metrics_io import load_metrics
+import matplotlib.lines as mlines
+
+
+# define custom legend lines for TPS and Players
+tps_line = mlines.Line2D([], [], color='black', linestyle='--', label='TPS', linewidth=0.5, dashes=(3, 3))
+players_line = mlines.Line2D([], [], color='black', linestyle='-', label='Players', linewidth=0.5)
 
 # NOT USED (ORIGINAL VERSION)
 def tps_players_plot(experiment, selected_metrics, type_exp):
@@ -48,6 +54,11 @@ def tps_players_plot(experiment, selected_metrics, type_exp):
             "fontsize": "small",
             "frameon": False
         },
+        subplots_adjust={
+            "top": 0.90,
+            "bottom": 0.175
+        },
+        tight_layout=True,
         grid=True,
         grid_minor=False,
         minor_ticks=False,
@@ -111,6 +122,11 @@ def mspt_plot(experiment, selected_metrics, type_exp):
             "fontsize": "small",
             "frameon": False
         },
+        subplots_adjust={
+            "top": 0.90,
+            "bottom": 0.175
+        },
+        tight_layout=True,
         grid=True,
         grid_minor=False,
         minor_ticks=False,
@@ -161,6 +177,11 @@ def mspt_stats_og_plot(experiment, selected_metrics, type_exp):
             "fontsize": "small",
             "frameon": False
         },
+        subplots_adjust={
+            "top": 0.90,
+            "bottom": 0.175
+        },
+        tight_layout=True,
         grid=True,
         grid_minor=False,
         minor_ticks=False,
@@ -231,15 +252,21 @@ def player_tps_server_plot(experiment, selected_metrics, type_exp):
     common_conf = CommonPlotConfig(
         title="Active Players and TPS per Server",
         show_title=False,
-        show_legend=False,
+        show_legend=True,
         legend_kwargs={
             "loc": "upper center",
-            "bbox_to_anchor": (0.5, 1.18),
+            "bbox_to_anchor": (0.5, 1.13),
             "ncol": 4,
             "borderaxespad": 0,
             "fontsize": "small",
-            "frameon": False
+            "frameon": False,
+            "handles": [tps_line, players_line]  # Add custom legend lines
         },
+        subplots_adjust={
+            "top": 0.90,
+            "bottom": 0.175
+        },
+        tight_layout=True,
         grid=True,
         grid_minor=False,
         minor_ticks=False,
@@ -296,6 +323,11 @@ def players_servers_plot(experiment, selected_metrics, type_exp):
             "fontsize": "small",
             "frameon": False
         },
+        subplots_adjust={
+            "top": 0.90,
+            "bottom": 0.175
+        },
+        tight_layout=True,
         grid=True,
         grid_minor=False,
         minor_ticks=False,
@@ -351,6 +383,11 @@ def tps_servers_plot(experiment, selected_metrics, type_exp):
             "fontsize": "small",
             "frameon": False
         },
+        subplots_adjust={
+            "top": 0.90,
+            "bottom": 0.175
+        },
+        tight_layout=True,
         grid=True,
         grid_minor=False,
         minor_ticks=False,
@@ -404,6 +441,11 @@ def chunk_ownership_plot(experiment, selected_metrics, type_exp):
             "fontsize": "small",
             "frameon": False
         },
+        subplots_adjust={
+            "top": 0.90,
+            "bottom": 0.175
+        },
+        tight_layout=True,
         grid=True,
         grid_minor=False,
         minor_ticks=False,
@@ -457,6 +499,11 @@ def players_chunks_owner_plot(experiment, selected_metrics, type_exp):
             "fontsize": "small",
             "frameon": False
         },
+        subplots_adjust={
+            "top": 0.90,
+            "bottom": 0.175
+        },
+        tight_layout=True,
         grid=True,
         grid_minor=False,
         minor_ticks=False,
@@ -517,6 +564,11 @@ def tps_players_stats_plot(experiment, selected_metrics, type_exp):
             "fontsize": "small",
             "frameon": False
         },
+        subplots_adjust={
+            "top": 0.90,
+            "bottom": 0.175
+        },
+        tight_layout=True,
         grid=True,
         grid_minor=False,
         minor_ticks=False,
@@ -574,6 +626,11 @@ def latency_plot(experiment, selected_metrics, type_exp):
             "fontsize": "small",
             "frameon": False
         },
+        subplots_adjust={
+            "top": 0.90,
+            "bottom": 0.175
+        },
+        tight_layout=True,
         grid=True,
         grid_minor=False,
         minor_ticks=False,
@@ -627,11 +684,82 @@ def mspt_stats_plot(experiment, selected_metrics, type_exp):
             "fontsize": "small",
             "frameon": False
         },
+        subplots_adjust={
+            "top": 0.90,
+            "bottom": 0.175
+        },
+        tight_layout=True,
         grid=True,
         grid_minor=False,
         minor_ticks=False,
         time_unit='s',
         output_path=f"plots/{type_exp}/{experiment}/mspt_stats_{experiment}.pdf"
+    )
+
+    conf = PlotConfig(
+        common=common_conf,
+        primary_axis=primary_axis,
+        # secondary_axis=secondary_axis
+    )
+
+    #filter the data so that only timestamp and value are kept
+    min_mspt = min_mspt[["timestamp", "value"]]
+    max_mspt = max_mspt[["timestamp", "value"]]
+    median_mspt = median_mspt[["timestamp", "value"]]
+
+    plot_df([min_mspt, max_mspt, median_mspt], None, conf)
+
+
+def mspt_tps_equivalence_plot(experiment, selected_metrics, type_exp):
+    """
+    Plot MSPT statistics: Average, Median, and 95th Percentile.
+    :param experiment: The name of the experiment to plot.
+    :param selected_metrics: List of selected metrics.
+    :param type_exp: Type of experiment ('exp_vanilla' or 'exp_mod').
+    """
+    min_mspt = load_metrics(selected_metrics[31], experiment, type_exp) # avg(mc_mspt_seconds_10_mean)
+    max_mspt = load_metrics(selected_metrics[32], experiment, type_exp) # quantile(0.95, mc_mspt_seconds_10_mean)
+    median_mspt = load_metrics(selected_metrics[28], experiment, type_exp) # quantile(0.5, mc_mspt_seconds_10_mean)
+
+    # Define horizontal lines for MSPT equivalence to TPS (50ms -> 20 TPS, 59ms -> 17 TPS)
+
+    primary_axis = AxisConfig(
+        labels=["Min MSPT", "Max MSPT", "Median MSPT"],
+        ylabel="MSPT",
+        plot_kwargs=[
+            {"color": "red", "linestyle": "-"},
+            {"color": "blue", "linestyle": "-"},
+            {"color": "orange", "linestyle": "-"}
+        ], 
+        horizontal_lines = [ # Define horizontal lines for MSPT equivalence to TPS (50ms -> 20 TPS, 59ms -> 17 TPS)
+            {"y": 50, "color": "green", "linestyle": "--", "linewidth": 0.8, "label": "20 TPS", },
+            {"y": 59, "color": "purple", "linestyle": "--", "linewidth": 0.8, "label": "17 TPS"}
+        ]
+    )
+
+    common_conf = CommonPlotConfig(
+        title="MSPT",   
+        show_title=False,
+        show_legend=True,
+        legend_kwargs={
+            "loc": "upper center",
+            "bbox_to_anchor": (0.5, 1.175),
+            "ncol": 3,
+            "borderaxespad": 0,
+            "fontsize": "small",
+            "frameon": False
+        },
+        legend_order = [0, 4, 1, 3, 2], # Ensure the horizontal lines are last in the legend
+        subplots_adjust={
+            "top": 0.85,
+            "bottom": 0.175
+        },
+        tight_layout=True,
+        grid=True,
+        grid_minor=False,
+        minor_ticks=False,
+        time_unit='s',
+        output_path=f"plots/{type_exp}/{experiment}/mspt_tps_equivalence_{experiment}.pdf"
     )
 
     conf = PlotConfig(

@@ -8,6 +8,7 @@ class AxisConfig:
     ylabel: str = None
     ylim: tuple[float, float] = None
     plot_kwargs: list[dict] = field(default_factory=list)  # List of dicts for each series' styling
+    horizontal_lines: Optional[List[float]] = None
 
 
 @dataclass
@@ -18,7 +19,8 @@ class CommonPlotConfig:
     figsize: tuple[int, int] = (3.33, 1.7)
     show_legend: bool = True
     legend_kwargs: dict = field(default_factory=dict)
-    # tight_layout: bool = True
+    legend_order: Optional[List[str]] = None
+    tight_layout: bool = True
     grid: bool = True
     grid_minor: bool = True
     grid_kwargs: dict = field(default_factory=dict)

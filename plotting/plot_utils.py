@@ -24,7 +24,7 @@ def plot_df(
     show_legend = common.show_legend
     grid = common.grid
     grid_minor = common.grid_minor
-    # tight_layout = common.tight_layout
+    tight_layout = common.tight_layout
 
     # Calculate the minimum timestamp for alignment
     min_time = min(
@@ -71,17 +71,31 @@ def plot_df(
         ax1.set_xlim(common.xlim)
         if secondary_axis and secondary_dfs:
             ax2.set_xlim(common.xlim)
+    # Display horizontal lines if specified
+    if primary_axis.horizontal_lines:
+        for line in primary_axis.horizontal_lines:
+            ax1.axhline(**line)
 
     # Plot title and legends
     if common.show_title:
         plt.title(title)
+
     if show_legend:
         lines_primary, labels_primary = ax1.get_legend_handles_labels()
         if secondary_axis and secondary_dfs:
             lines_secondary, labels_secondary = ax2.get_legend_handles_labels()
-            ax1.legend(lines_primary + lines_secondary, labels_primary + labels_secondary, **common.legend_kwargs)
+            handles = lines_primary + lines_secondary
+            labels = labels_primary + labels_secondary
         else:
-            ax1.legend(lines_primary, labels_primary, **common.legend_kwargs)
+            handles = lines_primary
+            labels = labels_primary
+
+        # Si se especifica legend_order, aplicar la reordenación
+        if common.legend_order:
+            handles = [handles[i] for i in common.legend_order]
+            labels = [labels[i] for i in common.legend_order]
+
+        ax1.legend(handles, labels, **common.legend_kwargs)
 
     # Grid and layout options
     if common.minor_ticks:
@@ -97,13 +111,11 @@ def plot_df(
         # Align the secondary y-axis with the primary y-axis
         ax2.set_yticks(np.linspace(ax2.get_yticks()[0], ax2.get_yticks()[-1], len(ax1.get_yticks())))
     
-    # if tight_layout:
-    #     plt.tight_layout()
-    # if common.subplots_adjust:
-    #     plt.subplots_adjust(**common.subplots_adjust)
+    if tight_layout:
+        plt.tight_layout()
+    if common.subplots_adjust:
+        plt.subplots_adjust(**common.subplots_adjust)
 
-    fig.tight_layout()
-    plt.subplots_adjust(top=0.90, bottom=0.175)
 
     if common.output_path:
         output_dir = os.path.dirname(common.output_path)
